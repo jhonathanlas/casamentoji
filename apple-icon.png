@@ -1,0 +1,17 @@
+export function FooterSection() {
+  return (
+    <footer className="bg-navy px-6 py-8 text-center">
+      <span className="block text-base text-gold">
+        &#10022; &#10022; &#10022;
+      </span>
+      <p className="mt-2.5 font-serif text-sm italic leading-relaxed text-white/50">
+        Obrigado por fazer parte
+        <br />
+        do nosso dia mais especial.
+      </p>
+      <span className="mt-3.5 block font-serif text-sm italic text-white/50">
+        I & J — 02.05.2026
+      </span>
+    </footer>
+  )
+}

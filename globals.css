@@ -1,0 +1,24 @@
+-- Criar tabela de fotos do casamento
+CREATE TABLE IF NOT EXISTS public.wedding_photos (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  sender_name TEXT NOT NULL,
+  blob_url TEXT NOT NULL,
+  blob_pathname TEXT NOT NULL,
+  filename TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Habilitar RLS (Row Level Security)
+ALTER TABLE public.wedding_photos ENABLE ROW LEVEL SECURITY;
+
+-- Política para permitir que qualquer pessoa visualize as fotos (galeria pública)
+CREATE POLICY "Qualquer pessoa pode ver as fotos" 
+  ON public.wedding_photos 
+  FOR SELECT 
+  USING (true);
+
+-- Política para permitir que qualquer pessoa envie fotos (sem autenticação necessária)
+CREATE POLICY "Qualquer pessoa pode enviar fotos" 
+  ON public.wedding_photos 
+  FOR INSERT 
+  WITH CHECK (true);
